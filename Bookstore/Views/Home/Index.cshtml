@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BooksViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Collection</h1>
+</div>
+
+@foreach (Book b in Model.Books)
+{
+
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-faded p-1">
+        <h4>
+            @b.Title
+            <span class="badge badge-pill badge-primary" style="float:right">
+                <small>@b.Price.ToString("c")</small>
+            </span>
+        </h4>
+    </div>
+    <div class="card-text p-1">By: @b.Author</div>
+    <div class="card-text p-1">Publisher: @b.Publisher</div>
+    <div class="card-text p-1">ISBN: @b.Isbn</div>
+    <div class="card-text p-1">Classification: @b.Classification</div>
+    <div class="card-text p-1">Category: @b.Category</div>
+    <div class="card-text p-1">Pages: @b.PageCount</div>
+</div>
+}
+
+<br />
+<div page-iterate="@Model.Pageinfo" page-action="Index" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>
+<br />
+<br />
+<br />
+<br />
+
+
+@*<h3>@b.Title</h3>
+
+<ul>
+    <li>Author: @b.Author</li>
+    <li>Publisher: @b.Publisher</li>
+    <li>ISBN: @b.Isbn</li>
+    <li>Classification: @b.Classification</li>
+    <li>Category: @b.Category</li>
+    <li>Pages: @b.PageCount</li>
+    <li>Price: $@b.Price</li>
+</ul>
+}
+
+
+<div page-iterate="@Model.Pageinfo" page-action="Index"></div>*@
