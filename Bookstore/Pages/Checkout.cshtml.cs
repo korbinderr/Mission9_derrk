@@ -12,9 +12,10 @@ namespace Bookstore.Pages
     {
         private IBookstoreRepository repo { get; set; }
 
-        public CheckoutModel (IBookstoreRepository temp)
+        public CheckoutModel (IBookstoreRepository temp, Cart c)
         {
             repo = temp;
+            cart = c;
         }
 
         public Cart cart { get; set; }
