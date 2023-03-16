@@ -2,33 +2,24 @@
 
 namespace Bookstore.Migrations
 {
-    public partial class AddPurchaseTable6 : Migration
+    public partial class AddPurchaseTable10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "CartLineItem");
-
-            migrationBuilder.DropTable(
-                name: "Purchase");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "Purchase",
                 columns: table => new
                 {
-                    PurchaseID = table.Column<int>(type: "INTEGER", nullable: false)
+                    PurchaseID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    AddressLine1 = table.Column<string>(type: "TEXT", nullable: false),
-                    AddressLine2 = table.Column<string>(type: "TEXT", nullable: true),
-                    AddressLine3 = table.Column<string>(type: "TEXT", nullable: true),
-                    City = table.Column<string>(type: "TEXT", nullable: false),
-                    Country = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    State = table.Column<string>(type: "TEXT", nullable: false),
-                    Zip = table.Column<string>(type: "TEXT", nullable: false)
+                    Name = table.Column<string>(nullable: false),
+                    AddressLine1 = table.Column<string>(nullable: false),
+                    AddressLine2 = table.Column<string>(nullable: true),
+                    AddressLine3 = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: false),
+                    State = table.Column<string>(nullable: false),
+                    Zip = table.Column<string>(nullable: false),
+                    Country = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,11 +30,11 @@ namespace Bookstore.Migrations
                 name: "CartLineItem",
                 columns: table => new
                 {
-                    LineID = table.Column<int>(type: "INTEGER", nullable: false)
+                    LineID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    BkBookId = table.Column<long>(type: "INTEGER", nullable: true),
-                    PurchaseID = table.Column<int>(type: "INTEGER", nullable: true),
-                    Quantity = table.Column<int>(type: "INTEGER", nullable: false)
+                    BkBookId = table.Column<long>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    PurchaseID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,6 +62,15 @@ namespace Bookstore.Migrations
                 name: "IX_CartLineItem_PurchaseID",
                 table: "CartLineItem",
                 column: "PurchaseID");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "CartLineItem");
+
+            migrationBuilder.DropTable(
+                name: "Purchase");
         }
     }
 }
