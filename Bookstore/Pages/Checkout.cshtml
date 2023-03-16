@@ -4,4 +4,40 @@
 }
 
 
-<h1>Cart</h1>
+<h1 class="jumbotron jumbotron-fluid bg-primary text-white text-center" style="height: 50px;">Cart</h1>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var i in Model.cart.Books)
+            {
+                <tr>
+                    <td>@i.Bk.Title</td>
+                    <td>@i.Bk.Author</td>
+                    <td>@i.Bk.Price</td>
+                    <td>@i.Quantity</td>
+                    <td>@(i.Quantity * i.Bk.Price)</td>
+                </tr>
+            }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="4">Total:</td>
+            <td>@Model.cart.CalculateTotal().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div>
+    <a class="btn btn-primary" href ="@Model.ReturnUrl">Continue Shopping</a>
+</div>

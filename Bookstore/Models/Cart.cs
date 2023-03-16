@@ -31,7 +31,7 @@ namespace Bookstore.Models
 
         public double CalculateTotal()
         {
-            double sum = Books.Sum(x => x.Quantity * 10);
+            double sum = Books.Sum(x => (x.Bk.Price * x.Quantity));
 
             return sum;
         }
