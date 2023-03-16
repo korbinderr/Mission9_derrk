@@ -25,7 +25,7 @@
                     <td>@i.Bk.Author</td>
                     <td>@i.Bk.Price</td>
                     <td>@i.Quantity</td>
-                    <td>@(i.Quantity * i.Bk.Price)</td>
+                    <td>@((i.Quantity * i.Bk.Price).ToString("c"))</td>
                 </tr>
             }
     </tbody>
