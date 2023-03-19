@@ -34,6 +34,7 @@ namespace Bookstore
            });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            services.AddScoped<ICheckoutRepository, EFCheckoutRepository>();
 
             services.AddRazorPages();
 
@@ -70,12 +71,19 @@ namespace Bookstore
             {
             endpoints.MapControllerRoute("categorypage", "{category}/Page{pageNum}", new { Controller = "Home", action = "Index" });
 
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Xss-Protection", "1");
+                await next();
+            });
+
+            app.UseHsts();
 
             // We want this endpoint to come before the mapcontrollerroute
             endpoints.MapControllerRoute(
-                name: "Paging",
-                pattern: "Page{pageNum}",
-                defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
+            name: "Paging",
+            pattern: "Page{pageNum}",
+            defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
 
 
             endpoints.MapControllerRoute("category", "{category}", new { Controller = "Home", action = "Index", pageNum = 1 });

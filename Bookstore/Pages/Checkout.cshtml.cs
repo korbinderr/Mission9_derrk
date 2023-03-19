@@ -10,6 +10,10 @@ namespace Bookstore.Pages
 {
     public class CheckoutModel : PageModel
     {
+        // Add functionality that shows the user their cart and remembers what page and filter 
+        // they had active when they added that book so that they can return to that exact place 
+        // from their cart if they click "Continue Shopping"
+
         private IBookstoreRepository repo { get; set; }
 
         public CheckoutModel (IBookstoreRepository temp, Cart c)
@@ -35,6 +39,7 @@ namespace Bookstore.Pages
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
 
+        // Return the cart again but without the item that they just removed from their cart
         public IActionResult OnPostRemove(int BookId, string returnUrl)
         {
             cart.RemoveItem(cart.Books.First(x => x.Bk.BookId == BookId).Bk);

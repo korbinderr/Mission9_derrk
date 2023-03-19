@@ -3,6 +3,7 @@
 @{
 }
 
+@*This is the CART razor page, it iterates through and displays all the books and displays all the ones in cart*@
 
 <h1 class="jumbotron jumbotron-fluid bg-primary text-white text-center" style="height: 50px;">Cart</h1>
 
@@ -48,6 +49,6 @@
 
 <div>
     <a class="btn btn-primary" href ="@Model.ReturnUrl">Continue Shopping</a>
-    <a class="btn btn-primary" href="@Model">Checkout</a>
+    <a class="btn btn-primary" asp-controller="Checkout" asp-action="CheckoutPg" >Checkout</a>
 </div>
 

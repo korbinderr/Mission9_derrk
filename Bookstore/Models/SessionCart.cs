@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Models
 {
+
+    // Create ability to have an active session so that when the user goes between pages,
+    // and back and forth between 'browsing' and their 'cart' they don't lose what books have
+    // been added to their cart. 
     public class SessionCart : Cart
     {
 
@@ -37,9 +41,9 @@ namespace Bookstore.Models
             Session.SetJson("cart", this);
         }
 
-        public override void ClearBasket()
+        public override void ClearCart()
         {
-            base.ClearBasket();
+            base.ClearCart();
             Session.Remove("cart");
         }
     }
